@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'DreamMMA';
+    src: url('/static/base/fonts/MMA.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('/static/base/fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+*{
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+}
+
+body{
+    font-family: 'poppins';
+}
+
+.menu {
+    background-color: rgba(255, 255, 255);
+    transition: background-color 1s ease;
+    position: fixed;
+    display: none;
+}
+
+.menu.scrolled {
+    background-color: black;
+}
+
+.menu.scrolled .menuLink1{
+    color: white;
+}
+.menu.scrolled .menuLink2{
+    color: white;
+}
+
+.menu.scrolled .menuLink1:hover{
+    color: red;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid red;
+}
+.menu.scrolled .menuLink2:hover{
+    color: red;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid red;
+}
+
+
+.mma{
+    font-family: 'DreamMMA';
+}
+.menuLink1{
+    color: black;
+    text-decoration: none;
+    font-size: xx-large;
+    box-sizing: border-box;
+}
+.menuLink2{
+    color: black;
+    text-decoration: none;
+    font-size: larger;
+    box-sizing: border-box;
+}
+
+.menuLink1:hover{
+    color: red;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid red;
+}
+.menuLink2:hover{
+    color: red;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid red;
+}
+
+.background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 500px;
+}
+.background1{
+    background-image: url('https://www.telemundodeportes.com/sites/default/files/2016/03/06/gettyimages-513970774.jpg');
+}
+.background2{
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/26/170/388/mma-ufc-khabib-nurmagomedov-wallpaper-preview.jpg');
+}
+.background3{
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/265/497/125/arts-battle-martial-mma-wallpaper-preview.jpg');
+}
+
+p{
+    height: 1000px;
+    background-color: white;
+}

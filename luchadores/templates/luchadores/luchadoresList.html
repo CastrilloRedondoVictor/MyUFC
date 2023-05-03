@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="background background1 row"></div>
+        <p>a</p>
+<div class="background background2 row"></div>
+<p>a</p>
+<div class="background background3 row"></div>
+<p>a</p>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    window.addEventListener("scroll", function() {
+        var menu = document.querySelector(".menu");
+        var backgrounds = document.querySelectorAll(".background");
+
+        var scrolled = false;
+        for (var i = 0; i < backgrounds.length; i++) {
+            var rect = backgrounds[i].getBoundingClientRect();
+            if (rect.top <= menu.offsetHeight && rect.bottom >= menu.offsetHeight) {
+                scrolled = true;
+                break;
+            }
+        }
+
+        if (scrolled) {
+            menu.classList.remove("scrolled");
+        } else {
+            menu.classList.add("scrolled");
+        }
+    });
+
+    $(document).ready(function() {
+        $(".menu").fadeIn(2000);
+    });
+</script>
+{% endblock javascript %}
