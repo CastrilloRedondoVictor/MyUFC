@@ -1,14 +1,23 @@
 {% extends 'base/base.html' %}
 
+{% block menu %}{% endblock menu %}
+
 {% block content %}
 {% load static %}
 
-<div class="background background1 row"></div>
-<div class="contenido">a</div>
-<div class="background background2 row"></div>
-<div class="contenido">a</div>
-<div class="background background3 row"></div>
-<div class="contenido">a</div>
+
+
+<div class= "row bgt">
+    <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
+        <h1>{{ object.nombre }} {{ object.apellidos }}</h1>
+  <p>Peso: {{ object.peso }}</p>
+  <p>Altura: {{ object.altura }}</p>
+  <!-- agregar más información del luchador aquí -->
+  <div class="mt-5 col-12 text-center">
+    <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
+</div>
+</div>
+
 {% endblock content %}
 
 {% block javascript %}

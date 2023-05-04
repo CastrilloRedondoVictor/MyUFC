@@ -7,17 +7,37 @@
     src: url('/static/base/fonts/Poppins-Medium.ttf') format('truetype');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@600&family=Montserrat:wght@100;500&display=swap');
+
 *{
 margin: 0px;
 padding: 0px;
 box-sizing: border-box;
+font-family: 'Encode Sans Condensed', sans-serif;
 }
 
 body{
-    font-family: 'poppins';
+    /* font-family: 'poppins'; */
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Encode Sans Condensed', sans-serif;
 }
 
+body::selection {
+    background-color: red;
+    color: white;
+    text-decoration: underline;
+}
+
+
+
 .menu {
+    background-color: rgba(255, 255, 255);
+    transition: background-color 1s ease;
+    position: fixed;
+    display: none;
+}
+
+.btt{
     background-color: rgba(255, 255, 255);
     transition: background-color 1s ease;
     position: fixed;
@@ -28,21 +48,36 @@ body{
     background-color: black;
 }
 
+.btt.scrolled2{
+    background-color: black;
+}
+
 .menu.scrolled .menuLink1{
     color: white;
+    border-bottom: 3px solid black;
 }
+
+.btt.scrolled2 .menuLink2{
+    color: white;
+    border-bottom: 3px solid black;
+}
+
 .menu.scrolled .menuLink2{
     color: white;
+    border-bottom: 3px solid black;
 }
 
 .menu.scrolled .menuLink1:hover{
     color: red;
-    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid red;
+}
+
+.btt.scrolled2 .menuLink2:hover{
+    color: red;
     border-bottom: 3px solid red;
 }
 .menu.scrolled .menuLink2:hover{
     color: red;
-    background-color: rgba(255, 255, 255, 0.1);
     border-bottom: 3px solid red;
 }
 
@@ -52,12 +87,14 @@ body{
 }
 .menuLink1{
     color: black;
+    border-bottom: 3px solid white;
     text-decoration: none;
     font-size: xx-large;
     box-sizing: border-box;
 }
 .menuLink2{
     color: black;
+    border-bottom: 3px solid white;
     text-decoration: none;
     font-size: larger;
     box-sizing: border-box;
@@ -65,12 +102,10 @@ body{
 
 .menuLink1:hover{
     color: red;
-    background-color: rgba(0, 0, 0, 0.1);
     border-bottom: 3px solid red;
 }
 .menuLink2:hover{
     color: red;
-    background-color: rgba(0, 0, 0, 0.1);
     border-bottom: 3px solid red;
 }
 
@@ -91,7 +126,121 @@ body{
     background-image: url('https://c4.wallpaperflare.com/wallpaper/265/497/125/arts-battle-martial-mma-wallpaper-preview.jpg');
 }
 
-p{
+.contenido{
     height: 1000px;
     background-color: white;
 }
+
+.bgt{
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/265/497/125/arts-battle-martial-mma-wallpaper-preview.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.foot{
+    height: 400px;
+    background-color: black;
+}
+
+.linkFooter {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.739);
+}
+
+.linkFooter:hover{
+    color: red;
+}
+
+
+
+.nuevo{
+    background-color: red;
+}
+
+
+
+.info {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.info caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+.info tr {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: .35em;
+}
+
+.info tr:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.info th,
+.info td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  .info th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .info {
+      border: 0;
+    }
+  
+    .info caption {
+      font-size: 1.3em;
+    }
+    
+    .info thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    .info tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    .info td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    .info td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    .info td:last-child {
+      border-bottom: 0;
+    }
+  }

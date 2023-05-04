@@ -3,12 +3,17 @@
 {% block content %}
 {% load static %}
 
-<div class="background background1 row"></div>
-<div class="contenido">a</div>
-<div class="background background2 row"></div>
-<div class="contenido">a</div>
-<div class="background background3 row"></div>
-<div class="contenido">a</div>
+<h1>Eliminar luchador</h1>
+<div class= "row">
+    <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
+    <h3 class="loginTitle mb-3">¿Estás seguro que deseas eliminar a {{ object }}?</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Eliminar">
+        <a class="btn btn-dark" href="{% url 'luchadores:luchadores-list'%}">Volver</a>
+      </form>
+  </div>
+  </div>
 {% endblock content %}
 
 {% block javascript %}

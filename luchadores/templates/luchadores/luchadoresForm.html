@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+
+{% block menu %}{% endblock menu %}
+
+{% block content %}
+{% load static %}
+
+
+
+<div class= "row bgt">
+    <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
+        {% if obj %}
+        <h1 class="longtitle mt-3">Editar luchador</h1>
+        {% else %}
+        <h1 class="longtitle mt-3">Crear nuevo luchador</h1>
+        {% endif %}
+        <form method="post" class="col-8 offset-2 mt-5">
+            {% csrf_token %}
+            <div class="col-12">
+                {% for field in form %}
+            <div class="form-group mt-3">
+                {{ field.label_tag }}
+                <div class="mt-1">{{ field }}</div>
+            </div>
+        {% endfor %}
+            </div>
+        
+            {% if obj %}
+            <div class="mt-5 col-12 text-center">
+                <button type="submit" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Editar</button>
+                <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
+            </div>
+            {% else %}
+            <div class="mt-5 col-12 text-center">
+                <button type="submit" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Crear</button>
+                <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
+            </div>
+            
+            {% endif %}
+            
+        </form>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    window.addEventListener("scroll", function() {
+        var menu = document.querySelector(".menu");
+        var backgrounds = document.querySelectorAll(".background");
+
+        var scrolled = false;
+        for (var i = 0; i < backgrounds.length; i++) {
+            var rect = backgrounds[i].getBoundingClientRect();
+            if (rect.top <= menu.offsetHeight && rect.bottom >= menu.offsetHeight) {
+                scrolled = true;
+                break;
+            }
+        }
+
+        if (scrolled) {
+            menu.classList.remove("scrolled");
+        } else {
+            menu.classList.add("scrolled");
+        }
+    });
+
+    $(document).ready(function() {
+        $(".menu").fadeIn(2000);
+    });
+</script>
+{% endblock javascript %}

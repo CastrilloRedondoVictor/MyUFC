@@ -10,16 +10,19 @@
         <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="{% static 'base/img/logoMyUFC.png' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         {% block import_css %}{% endblock import_css %}
     </head>
     <body>
         {% block menu %}
-        <div class="menu fixed-top col-lg-6 col-md-10 col-sm-10 mt-4 m-auto">
-            <div class="row h-100">
-                <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'luchadores:luchadoresList' %}">LUCHADORES</a>
-                <a class="col-lg-4 col-md-12 col-sm-12 text-center mma menuLink1" href="{% url 'bases:home' %}">my ufc</a>
-                <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combatesList' %}">COMBATES</a>
+        <div class="row">
+            <div class="menu fixed-top col-lg-6 col-md-10 col-sm-10 mt-4 m-auto">
+                <div class="row h-100">
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'luchadores:luchadores-list' %}">LUCHADORES</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 text-center mma menuLink1" href="{% url 'bases:home' %}">my ufc</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combatesList' %}">COMBATES</a>
+                </div>
             </div>
         </div>
         {% endblock menu %}
@@ -33,14 +36,102 @@
 
 
         {% block footer %}
+            {% comment %} <a class = "logout col-1 m-auto bg-black text-light" href="{% url 'bases:logout' %}"><ion-icon name="log-out-outline"></ion-icon></a> {% endcomment %}
 
+
+    <footer class="text-white text-center text-lg-start bg-dark">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row mt-4">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Aviso legal</h5>
+  
+            <p class = "linkFooter">
+                Esta página web ha sido creada con fines académicos como proyecto de fin de grado.
+            </p>
+  
+            <p class = "linkFooter">
+                Cualquier información proporcionada será utilizada únicamente para fines educativos y no será compartida con terceros.
+            </p>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Contacto</h5>
+  
+            <ul class="fa-ul" style="margin-left: 1.65em;">
+              <li class="mb-3">
+                <a class = "linkFooter" href="mailto:castrilloredondovictor@gmail.com" target="_blank"><span class="fa-li"><ion-icon name="folder-open-outline"></ion-icon></span><span class="ms-2">castrilloredondovictor@gmail.com</span></a>
+              </li>
+              <li class="mb-3">
+                <a class = "linkFooter" href="https://www.instagram.com/viictor.cr/" target="_blank"><span class="fa-li"><ion-icon name="logo-instagram"></ion-icon></span><span class="ms-2">@viictor.cr</span></a>
+              </li>
+              <li class="mb-3">
+                <a class = "linkFooter" href="tel:+34665818706"><span class="fa-li"><ion-icon name="call-outline"></ion-icon></span><span class="ms-2">+34 665 818 706</span></a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Acciones</h5>
+  
+            <ul class="fa-ul" style="margin-left: 1.65em;">
+                <li class="mb-3">
+                    <a class = "linkFooter" href="{% url 'bases:home' %}"><span class="fa-li"><ion-icon name="apps-outline"></ion-icon></span><span class="ms-2">Inicio</span></a>
+                  </li>
+                  <li class="mb-3">
+                    <a class = "linkFooter" href="#" class="irArriba"><span class="fa-li"><ion-icon name="arrow-up-outline"></ion-icon></span><span class="ms-2">Volver</span></a>
+                  </li>
+              <li class="mb-3">
+                <a class = "linkFooter" href="{% url 'bases:logout' %}"><span class="fa-li"><ion-icon name="log-out-outline"></ion-icon></span><span class="ms-2">Log out</span></a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="linkFooter" href="https://www.ufc.com/" target="_blank">ufc.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
         {% endblock footer %}
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script>
+            $(document).ready(function(){
+
+                $('.ir-arriba').click(function(){
+                    $('body, html').animate({
+                        scrollTop: '0px'
+                    }, 5000);
+                });
+            
+                $(window).scroll(function(){
+                    if( $(this).scrollTop() > 0 ){
+                        $('.ir-arriba').slideDown(5000);
+                    } else {
+                        $('.ir-arriba').slideUp(5000);
+                    }
+                });
+            
+            });
+        </script>
         
-        {% block javascript %}{% endblock javascript %}
+        {% block javascript %}
+        
+        {% endblock javascript %}
 
     </body>
 </html>

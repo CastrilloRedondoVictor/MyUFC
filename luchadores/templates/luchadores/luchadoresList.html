@@ -1,14 +1,85 @@
 {% extends 'base/base.html' %}
 
+{% block menu %}
+        <div class="row">
+            <div class="menu fixed-top col-lg-6 col-md-10 col-sm-10 mt-4 m-auto">
+                <div class="row h-100">
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'luchadores:luchadores_create' %}">NUEVO LUCHADOR</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 text-center mma menuLink1" href="{% url 'bases:home' %}">my ufc</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combatesList' %}">COMBATES</a>
+                </div>
+            </div>
+        </div>
+        {% endblock menu %}
+
 {% block content %}
 {% load static %}
 
-<div class="background background1 row"></div>
-        <p>a</p>
-<div class="background background2 row"></div>
-<p>a</p>
-<div class="background background3 row"></div>
-<p>a</p>
+
+<div class="background background1 row">
+    
+</div>
+
+
+<div class= "row">
+<div class= "col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
+    
+{% comment %} <h1 class="text-center mb-5">LISTADO DE LUCHADORES</h1> {% endcomment %}
+
+
+<table class="info">
+    <h3 class=" text-center mb-3">LISTADO DE LUCHADORES</h3>
+    <thead>
+    <tr>
+        <th scope="col">Nombre</th>
+        {% comment %} <th>Edad</th> {% endcomment %}
+        <th scope="col">Apellidos</th>
+        <th scope="col">Peso</th>
+        <th scope="col">Altura</th>
+        <th scope="col">Alcance</th>
+        <th scope="col">Empates</th>
+        <th scope="col">Victorias</th>
+        <th scope="col">Derrotas</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for luchador in luchadores %}
+    <tr>
+        <td>{{ luchador.nombre }}</td>
+            {% comment %} <td>{{ luchador.edad }}</td> {% endcomment %}
+            <td>{{ luchador.apellidos }}</td>
+            <td>{{ luchador.peso }}</td>
+            <td>{{ luchador.altura }}</td>
+            <td>{{ luchador.alcance }}</td>
+            <td>{{ luchador.empates }}</td>
+            <td>{{ luchador.victorias }}</td>
+            <td>{{ luchador.derrotas }}</td>
+            <td>
+            <a href="{% url 'luchadores:luchadores_detail' luchador.id %}" class="text-dark m-1"><ion-icon name="information-outline"></ion-icon></a>
+            <a href="{% url 'luchadores:luchadores_edit' luchador.id %}" class="text-dark m-1"><ion-icon name="create-outline"></ion-icon></a>
+            <a href="{% url 'luchadores:luchadores_delete' luchador.id %}" class="text-danger m-1"><ion-icon name="trash-outline"></ion-icon></a>
+            </td>
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="10">No hay luchadores registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
 {% endblock content %}
 
 {% block javascript %}
