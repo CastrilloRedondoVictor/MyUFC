@@ -21,7 +21,7 @@
                 <div class="row h-100">
                     <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'luchadores:luchadores-list' %}">LUCHADORES</a>
                     <a class="col-lg-4 col-md-12 col-sm-12 text-center mma menuLink1" href="{% url 'bases:home' %}">my ufc</a>
-                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combatesList' %}">COMBATES</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combates-list' %}">COMBATES</a>
                 </div>
             </div>
         </div>
@@ -97,9 +97,16 @@
       <!-- Grid container -->
   
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2023 Copyright:
-        <a class="linkFooter" href="https://www.ufc.com/" target="_blank">ufc.com</a>
+      <div class = "row" style="background-color: rgba(0, 0, 0, 0.2);">
+        
+          <div class="text-center p-3 col-lg-6 col-md-6 col-sm-12">
+            Usuario:
+            <a class="linkFooter" href="/admin" target="_blank">{{user}}</a>
+          </div>
+          <div class="text-center p-3 col-lg-6 col-md-6 col-sm-12">
+            © 2023 Copyright:
+            <a class="linkFooter" href="https://www.ufc.com/" target="_blank">ufc.com</a>
+          </div>
       </div>
       <!-- Copyright -->
     </footer>

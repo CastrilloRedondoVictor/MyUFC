@@ -1,20 +1,27 @@
 {% extends 'base/base.html' %}
 
+{% block menu %}{% endblock menu %}
+
 {% block content %}
 {% load static %}
 
-<h1>Eliminar luchador</h1>
-<div class= "row">
-    <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
-    <h3 class="loginTitle mb-3">¿Estás seguro que deseas eliminar a {{ object }}?</h3>
+
+<div class= "row mt-5">
+    <div class= "col-lg-8 col-md-10 col-sm-12 m-auto card o-hidden border-0 shadow-lg p-5 my-5">
+    <h3 class="loginTitle mb-1">¿Estás seguro que deseas eliminar a {{ object }}?</h3>
+    <p class=" m-4 mt-0 text-dark">Eliminarás también todos los combates en los que ha participado y por tanto las estadísticas de sus contrincantes en éstos.</p>
     <form method="post">
         {% csrf_token %}
-        <input type="submit" class="btn btn-danger" value="Eliminar">
-        <a class="btn btn-dark" href="{% url 'luchadores:luchadores-list'%}">Volver</a>
+        <div class="row">
+                <input type="submit" class="btn btn-danger col-lg-5 col-md-7 col-sm-7 m-auto mt-1" value="Eliminar">
+                <a class="btn btn-dark col-lg-5 col-md-7 col-sm-7 m-auto mt-1" href="{% url 'luchadores:luchadores-list'%}">Volver</a>
+        </div>
       </form>
   </div>
   </div>
 {% endblock content %}
+
+{% block footer %}{% endblock footer %}
 
 {% block javascript %}
 <script>

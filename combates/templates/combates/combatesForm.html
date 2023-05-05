@@ -10,22 +10,25 @@
 <div class= "row bgt">
     <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
         {% if obj %}
-        <h1 class="longtitle mt-3">Editar luchador</h1>
+        <h1 class="longtitle mt-3">Editar combate</h1>
         {% else %}
-        <h1 class="longtitle mt-3">Crear nuevo luchador</h1>
+        <h1 class="longtitle mt-3">Crear nuevo combate</h1>
         {% endif %}
-        <form method="post" class="col-8 offset-2 mt-5">
+        <form method="post" class=" col-8 offset-2 mt-5">
             {% csrf_token %}
             <div class="col-12">
                 {% for field in form %}
-            <div class="form-group mt-3">
+            <div class="form-group mt-3 {% if not field.errors %}was-validated {% else %} was-invalid {% endif %} ">
                 {{ field.label_tag }}
                 <div class="mt-1">{{ field }}</div>
                 {% if field.errors %}
-                <div class="invalid-feedback">{{ field.errors.as_text }}</div>
+                {{ field.errors }}
+                <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                </div>
+                <div class="invalid-feedback">{{ field.errors }}</div>
             {% endif %}
             </div>
-            
         {% endfor %}
             </div>
         

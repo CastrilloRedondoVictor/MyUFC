@@ -13,8 +13,8 @@ RESULTADOS_CHOICES = [
 # Create your models here.
 
 class Combate(BaseModel):
-    boxeador_rojo = models.ForeignKey(Luchador, on_delete=models.CASCADE, related_name='combates_rojo')
-    boxeador_azul = models.ForeignKey(Luchador, on_delete=models.CASCADE, related_name='combates_azul')
+    luchador_rojo = models.ForeignKey(Luchador, on_delete=models.CASCADE, related_name='combates_rojo')
+    luchador_azul = models.ForeignKey(Luchador, on_delete=models.CASCADE, related_name='combates_azul')
     fecha = models.DateField()
     round_max = models.PositiveIntegerField()
     resultado = models.CharField(choices=RESULTADOS_CHOICES)

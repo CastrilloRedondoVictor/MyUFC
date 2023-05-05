@@ -1,14 +1,76 @@
 {% extends 'base/base.html' %}
 
+{% block menu %}
+        <div class="row">
+            <div class="menu fixed-top col-lg-6 col-md-10 col-sm-10 mt-4 m-auto">
+                <div class="row h-100">
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'luchadores:luchadores-list' %}">LUCHADORES</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 text-center mma menuLink1" href="{% url 'bases:home' %}">my ufc</a>
+                    <a class="col-lg-4 col-md-12 col-sm-12 pt-2 pb-2 text-center menuLink2" href="{% url 'combates:combates_create' %}">NUEVO COMBATE</a>
+                </div>
+            </div>
+        </div>
+        {% endblock menu %}
+
 {% block content %}
 {% load static %}
 
-<div class="background background1 row"></div>
-        <p>a</p>
-<div class="background background2 row"></div>
-<p>a</p>
-<div class="background background3 row"></div>
-<p>a</p>
+
+<div class="background background1 row">
+    
+</div>
+
+
+<div class= "row">
+<div class= "col-lg-10 col-md-12 col-sm-12 offset-lg-1 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
+
+
+<table class="info">
+    <h3 class=" text-center mb-3">LISTADO DE COMBATES</h3>
+    <thead>
+    <tr>
+        {% comment %} <th>Edad</th> {% endcomment %}
+        <th scope="col">LUCHADOR ROJO</th>
+        <th scope="col">LuUCHADOR AZUL</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">ROUNDS</th>
+        <th scope="col">RESULTADO</th>
+        <th scope="col">ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for combate in combates %}
+    <tr>
+            <td>{{ combate.luchador_rojo }}</td>
+            <td>{{ combate.luchador_azul }}</td>
+            <td>{{ combate.fecha }}</td>
+            <td>{{ combate.round_max }}</td>
+            <td>{{ combate.resultado }}</td>
+            <td>
+            <a href="{% url 'combates:combates_detail' combate.id %}" class="text-dark m-1"><ion-icon class="icono" name="information-outline"></ion-icon></a>
+            <a href="{% url 'combates:combates_edit' combate.id %}" class="text-dark m-1"><ion-icon class="icono" name="create-outline"></ion-icon></a>
+            <a href="{% url 'combates:combates_delete' combate.id %}" class="text-danger m-1"><ion-icon class="icono" name="trash-outline"></ion-icon></a>
+            </td>
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="10">No hay combates registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
 {% endblock content %}
 
 {% block javascript %}

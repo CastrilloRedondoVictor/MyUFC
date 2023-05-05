@@ -4,9 +4,77 @@
 {% load static %}
 
 <div class="background background1 row"></div>
-<div class="contenido">a</div>
+<div class="contenido p-5">
+    <h1 class="mma">top 3</h1>
+        <div class="row top3">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-a">
+                        {% if segundo %}
+                        <h1>{{segundo.nombre}}<br>{{segundo.apellidos}}</h1>
+                        <span class="price">#2</span>
+                        <div class="card-back">
+                            <a href="{% url 'luchadores:luchadores_detail' segundo.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">#2</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-b">
+                        {% if primero %}
+                        <h1>{{primero.nombre}}<br>{{primero.apellidos}}</h1>
+                        <span class="price">#1</span>
+                        <div class="card-back">
+                            <a href="{% url 'luchadores:luchadores_detail' primero.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">#1</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-c">
+                        {% if tercero %}
+                        <h1>{{tercero.nombre}}<br>{{tercero.apellidos}}</h1>
+                        <span class="price">#3</span>
+                        <div class="card-back">
+                            <a href="{% url 'luchadores:luchadores_detail' tercero.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">#3</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="co-lg-6 col-md-8 col-sm-10 m-auto text-center mt-5">
+                <p>Este es el top 3 de luchadores en relación a su histórico de combates. cada vez que haya un nuevo combate, este ranking se actualizará.</p>
+    </div>
+            </div>
+        </div>
 <div class="background background2 row"></div>
-<div class="contenido">a</div>
+<div class="contenido">
+</div>
 <div class="background background3 row"></div>
 <div class="contenido">a</div>
 {% endblock content %}

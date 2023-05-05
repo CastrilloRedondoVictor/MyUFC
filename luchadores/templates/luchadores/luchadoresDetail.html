@@ -9,9 +9,28 @@
 
 <div class= "row bgt">
     <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
-        <h1>{{ object.nombre }} {{ object.apellidos }}</h1>
-  <p>Peso: {{ object.peso }}</p>
-  <p>Altura: {{ object.altura }}</p>
+        <h1 class = "mma mb-5">{{ object.nombre|lower }} {{ object.apellidos|lower }}</h1>
+        <div class="col-10 m-auto">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item m-2"><b>Fecha de nacimiento:</b> {{ object.nacimiento }}</li>
+                <li class="list-group-item m-2"><b>Peso:</b> {{ object.peso }}</li>
+                <li class="list-group-item m-2"><b>Altura:</b> {{ object.altura }} m</li>
+                <li class="list-group-item m-2"><b>Alcance:</b> {{ object.alcance }} m</li>
+                <li class="list-group-item m-2"><b>Victorias:</b> {{ object.victorias }}</li>
+                <li class="list-group-item m-2"><b>Empates:</b> {{ object.empates }}</li>
+                <li class="list-group-item m-2"><b>Derrotas:</b> {{ object.derrotas }}</li>
+                <li class="list-group-item m-2"><b>Golpes acertados:</b> {{ object.golpes_acertados }}</li>
+                <li class="list-group-item m-2"><b>Golpes fallados:</b> {{ object.golpes_fallados }}</li>
+                <li class="list-group-item m-2"><b>Golpes totales:</b> {{ object.golpes_totales }}</li>
+              </ul>
+            </div>
+        {% comment %} <p>Fecha de nacimiento: {{ object.nacimiento }}</p>
+  <p>Peso: {{ object.peso }} kg</p>
+  <p>Altura: {{ object.altura }} m</p>
+  <p>Alcance: {{ object.alcance }} m</p>
+  <p>Victorias: {{ object.victorias }}</p>
+  <p>{{ object. }}</p>
+  <p>Derrotas: {{ object.derrotas }}</p> {% endcomment %}
   <!-- agregar más información del luchador aquí -->
   <div class="mt-5 col-12 text-center">
     <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
