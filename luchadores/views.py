@@ -4,9 +4,9 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from luchadores.forms import LuchadorForm, LuchadorEditForm
+from luchadores.forms import LuchadorForm
 
-from .models import Luchador
+from .models import Luchador, PAISES
 from bases.views import actualizar_registros
 
 # Create your views here.
@@ -32,12 +32,13 @@ class LuchadorCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        form.instance.pais = PAISES[form.instance.pais]
         return super().form_valid(form)
 
 
 class LuchadorEditView(LoginRequiredMixin, generic.UpdateView):
     model=Luchador
-    form_class = LuchadorEditForm
+    form_class = LuchadorForm
     template_name = 'luchadores/luchadoresForm.html'
     context_object_name="obj"
     login_url = 'bases:login'
@@ -45,6 +46,7 @@ class LuchadorEditView(LoginRequiredMixin, generic.UpdateView):
     actualizar_registros()
     
     def form_valid(self, form):
+        form.instance.pais = PAISES[form.instance.pais]
         return super().form_valid(form)
         
     
@@ -62,3 +64,13 @@ class LuchadorDetailView(LoginRequiredMixin, generic.DetailView):
     login_url = 'bases:login'
     template_name = 'luchadores/luchadoresDetail.html'
     actualizar_registros()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["balanceText"] = ['Victorias', 'Empates', 'Derrotas']
+        context['balance'] = [self.get_object().victorias, self.get_object().empates, self.get_object().derrotas]
+        
+        context["golpesText"] = ['Acertados', 'Evitados', 'Fallados', 'Recibidos']
+        context['golpes'] = [self.get_object().golpes_acertados, self.get_object().golpes_evitados, self.get_object().golpes_fallados, self.get_object().golpes_encajados]
+        return context
+    

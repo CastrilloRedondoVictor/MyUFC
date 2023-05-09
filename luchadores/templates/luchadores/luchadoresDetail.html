@@ -16,14 +16,8 @@
                 <li class="list-group-item m-2"><b>Peso:</b> {{ object.peso }}</li>
                 <li class="list-group-item m-2"><b>Altura:</b> {{ object.altura }} m</li>
                 <li class="list-group-item m-2"><b>Alcance:</b> {{ object.alcance }} m</li>
-                <li class="list-group-item m-2"><b>Victorias:</b> {{ object.victorias }}</li>
-                <li class="list-group-item m-2"><b>Empates:</b> {{ object.empates }}</li>
-                <li class="list-group-item m-2"><b>Derrotas:</b> {{ object.derrotas }}</li>
-                <li class="list-group-item m-2"><b>Golpes acertados:</b> {{ object.golpes_acertados }}</li>
-                <li class="list-group-item m-2"><b>Golpes fallados:</b> {{ object.golpes_fallados }}</li>
-                <li class="list-group-item m-2"><b>Golpes totales:</b> {{ object.golpes_totales }}</li>
-              </ul>
-            </div>
+            </ul>
+        </div>
         {% comment %} <p>Fecha de nacimiento: {{ object.nacimiento }}</p>
   <p>Peso: {{ object.peso }} kg</p>
   <p>Altura: {{ object.altura }} m</p>
@@ -32,6 +26,13 @@
   <p>{{ object. }}</p>
   <p>Derrotas: {{ object.derrotas }}</p> {% endcomment %}
   <!-- agregar más información del luchador aquí -->
+
+  <div class="row">
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Balance de victorias</h3><canvas id="balanceVictorias" ></canvas></div>
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Golpes</h3><canvas id="golpesTotales" ></canvas></div>
+</div>
+
+
   <div class="mt-5 col-12 text-center">
     <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
 </div>
@@ -64,5 +65,165 @@
     $(document).ready(function() {
         $(".menu").fadeIn(2000);
     });
+</script>
+
+<script>
+    function getColor() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        var a = 0.3;
+        color = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+        return color;
+    }
+    function getColores(){
+        var colores = [];
+        for (var i = 0; i <= 50; i++) {
+            colores.push(getColor());
+            console.log(colores[i]);
+        }
+        return colores;
+    }
+    function getColores2(){
+        var colores = ['rgba(0, 0, 255, 0.3)', 'rgba(255, 255, 0, 0.3)', 'rgba(255, 0, 0, 0.3)'];
+        return colores;
+    }
+
+
+    function getColores3(){
+        var colores = ['rgba(0, 0, 255, 0.3)', 'rgba(0, 0, 255, 0.3)', 'rgba(255, 0, 0, 0.3)', 'rgba(255, 0, 0, 0.3)'];
+        return colores;
+    }
+
+    
+    
+    
+
+
+    var ctx = document.getElementById('balanceVictorias').getContext('2d');
+    var balanceVictorias = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ balanceText|safe }},
+            datasets: [{
+                label: '',
+                data: {{ balance|safe }},
+                borderColor: 'grey',
+                borderWidth: 1,
+                backgroundColor: getColores2(),
+            },]
+
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            animation: {
+                duration: 3000
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            
+        }
+    });
+
+
+    var ctx2 = document.getElementById('golpesTotales').getContext('2d');
+    var golpesTotales = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: {{ golpesText|safe }},
+            datasets: [{
+                label: '',
+                data: {{ golpes|safe }},
+                borderColor: 'grey',
+                borderWidth: 1,
+                backgroundColor: getColores3(),
+            }]
+        },
+        options: {
+            legend: {
+                display: false,
+            },
+            animation: {
+                duration: 3000
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            
+        }
+    });
+
+
+    {% comment %} var ctx3 = document.getElementById('facturasPorTipo').getContext('2d');
+    var pagosPorComunidad = new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: {{ tiposFac|safe }},
+            datasets: [{
+                label: 'Dinero total',
+                data: {{ numFac|safe }},
+                borderColor: 'grey',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            animation: {
+                duration: 3000
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            backgroundColor: getColores(),
+        }
+    });
+
+
+    var ctx4 = document.getElementById('ventasPorEvento').getContext('2d');
+    var ventasPorEvento = new Chart(ctx4, {
+        type: 'line',
+        data: {
+            labels: {{ filtrosEv|safe }},
+            datasets: [{
+                label: 'Dinero total',
+                data: {{ ventas|safe }},
+                borderColor: 'grey',
+                borderWidth: 1,
+                pointRadius: 10,
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            animation: {
+                duration: 3000
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            backgroundColor: getColores(),
+        }
+    }); {% endcomment %}
 </script>
 {% endblock javascript %}

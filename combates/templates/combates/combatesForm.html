@@ -22,11 +22,9 @@
                 {{ field.label_tag }}
                 <div class="mt-1">{{ field }}</div>
                 {% if field.errors %}
-                {{ field.errors }}
-                <div class="invalid-feedback">
-                    Please enter a message in the textarea.
+                <div div class = "form_error">
+                    {{ field.errors }}
                 </div>
-                <div class="invalid-feedback">{{ field.errors }}</div>
             {% endif %}
             </div>
         {% endfor %}
@@ -34,13 +32,13 @@
         
             {% if obj %}
             <div class="mt-5 col-12 text-center">
-                <button type="submit" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Editar</button>
-                <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
+                <button type="submit" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Editar</button>
+                <a href="{% url 'combates:combates-list' %}" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
             </div>
             {% else %}
             <div class="mt-5 col-12 text-center">
-                <button type="submit" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Crear</button>
-                <a href="{% url 'luchadores:luchadores-list' %}" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
+                <button type="submit" class="btn btn-danger col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Crear</button>
+                <a href="{% url 'combates:combates-list' %}" class="btn btn-dark col-lg-4 col-md-8 col-sm-8 mt-2 m-auto">Volver</a>
             </div>
             
             {% endif %}

@@ -394,6 +394,10 @@ body::selection {
     font-size: larger;
 }
 
+.form_error{
+    color: red;
+}
+
 
 
 .form-control{

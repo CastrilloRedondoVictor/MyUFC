@@ -8,19 +8,41 @@ class CombateForm(forms.ModelForm):
     class Meta:
         model = Combate
         fields = ['luchador_rojo', 'luchador_azul', 'fecha', 'round_max', 'resultado', 
-                    'golpes_rojo', 'golpes_acertados_rojo',
-                    'golpes_azul', 'golpes_acertados_azul']
+                    'golpes_acertados_rojo', 
+                    'golpes_directos_rojo', 'golpes_crochet_rojo', 'golpes_gancho_rojo',
+                    'golpes_acertados_azul',
+                    'golpes_directos_azul', 'golpes_crochet_azul', 'golpes_gancho_azul']
         
         widgets = {
             'luchador_rojo': forms.Select(attrs={'class': 'form-control'}),
             'luchador_azul': forms.Select(attrs={'class': 'form-control'}),
             'round_max': forms.NumberInput(attrs={'class': 'form-control'}),
             'resultado': forms.Select(attrs={'class': 'form-control'}),
-            'golpes_rojo': forms.NumberInput(attrs={'class': 'form-control'}),
             'golpes_acertados_rojo': forms.NumberInput(attrs={'class': 'form-control'}),
-            'golpes_azul': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_directos_rojo': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_crochet_rojo': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_gancho_rojo': forms.NumberInput(attrs={'class': 'form-control'}),
             'golpes_acertados_azul': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_directos_azul': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_crochet_azul': forms.NumberInput(attrs={'class': 'form-control'}),
+            'golpes_gancho_azul': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+        
+        labels = {
+            'luchador_rojo': 'Luchador Rojo',
+            'luchador_azul': 'Luchador Azul',
+            'round_max': 'Rondas Totales',
+            'resultado': 'Ganador del Combate',
+            'golpes_acertados_rojo': 'Golpes Acertados Rojo',
+            'golpes_directos_rojo': 'Golpes Directos Rojo',
+            'golpes_crochet_rojo': 'Golpes Crochet Rojo',
+            'golpes_gancho_rojo': 'Golpes Gancho Rojo',
+            'golpes_acertados_azul': 'Golpes Acertados Azul',
+            'golpes_directos_azul': 'Golpes Directos Azul',
+            'golpes_crochet_azul': 'Golpes Crochet Azul',
+            'golpes_gancho_azul': 'Golpes Gancho Azul',
+        }
+    
         
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
@@ -35,3 +57,10 @@ class CombateForm(forms.ModelForm):
         if round_max > 3:
             raise forms.ValidationError('El máximo de rondas es de 3', code='invalid_round_max')
         return round_max
+    
+    def clean_golpes_azul(self):
+        golpes_acertados_azul = self.cleaned_data['golpes_acertados_azul']
+        golpes = self.cleaned_data['golpes_directos_azul'] + self.cleaned_data['golpes_crochet_azul'] + self.cleaned_data['golpes_gancho_azul']
+        
+        if  golpes_acertados_azul > golpes:
+            raise forms.ValidationError('No puede haber más golpes acertados que golpes totales.', code='invalid_kicks')

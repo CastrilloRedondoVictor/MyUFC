@@ -7,6 +7,8 @@ from combates.models import Combate
 # Create your views here.
 
 def actualizar_registros():
+    print("")
+    
     for luchador in Luchador.objects.all():
         luchador.victorias = 0
         luchador.derrotas = 0
@@ -14,6 +16,9 @@ def actualizar_registros():
         luchador.golpes_acertados = 0
         luchador.golpes_totales = 0
         luchador.golpes_fallados = 0
+        luchador.golpes_recibidos = 0
+        luchador.golpes_encajados = 0
+        luchador.golpes_evitados = 0
         luchador.save()
         
         for combate in Combate.objects.all():
@@ -31,6 +36,9 @@ def actualizar_registros():
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_rojo
                 luchador.golpes_totales = luchador.golpes_totales + combate.golpes_rojo
                 luchador.golpes_fallados = luchador.golpes_fallados + combate.golpes_fallados_rojo
+                luchador.golpes_recibidos = luchador.golpes_recibidos + combate.golpes_azul
+                luchador.golpes_encajados = luchador.golpes_encajados + combate.golpes_acertados_azul
+                luchador.golpes_evitados = luchador.golpes_evitados + combate.golpes_fallados_azul
                     
             if luchador == combate.luchador_azul:
                 if resultado == 'rojo':
@@ -43,7 +51,10 @@ def actualizar_registros():
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_azul
                 luchador.golpes_totales = luchador.golpes_totales + combate.golpes_azul
                 luchador.golpes_fallados = luchador.golpes_fallados + combate.golpes_fallados_azul
-                    
+                luchador.golpes_recibidos = luchador.golpes_recibidos + combate.golpes_rojo
+                luchador.golpes_encajados = luchador.golpes_encajados + combate.golpes_acertados_rojo
+                luchador.golpes_evitados = luchador.golpes_evitados + combate.golpes_fallados_rojo
+                
             luchador.save()
 
 class Home(LoginRequiredMixin, generic.TemplateView):
