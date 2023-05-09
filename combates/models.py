@@ -5,9 +5,9 @@ from luchadores.models import Luchador
 
 
 RESULTADOS_CHOICES = [
-        ('rojo', 'Rojo'),
-        ('empate', 'Empate'),
-        ('azul', 'Azul'),
+        ('Rojo', 'Rojo'),
+        ('Empate', 'Empate'),
+        ('Azul', 'Azul'),
     ]
 
 # Create your models here.

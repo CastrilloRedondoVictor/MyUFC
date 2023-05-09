@@ -12,8 +12,8 @@
         <h1 class = "mma mb-5">{{ object.luchador_rojo|lower }} - {{ object.luchador_azul|lower }}</h1>
         <div class="col-10 m-auto">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item m-2"><b>Luchador rojo:</b> {{ object.luchador_rojo }}</li>
-                <li class="list-group-item m-2"><b>Luchador azul:</b> {{ object.luchador_azul }} </li>
+                <li class="list-group-item m-2"><b>Luchador rojo:</b> <a class="link" href="{% url 'luchadores:luchadores_detail' object.luchador_rojo.id %}">{{ object.luchador_rojo }}</a></li>
+                <li class="list-group-item m-2"><b>Luchador azul:</b> <a class="link" href="{% url 'luchadores:luchadores_detail' object.luchador_azul.id %}">{{ object.luchador_azul }}</a> </li>
                 <li class="list-group-item m-2"><b>Fecha:</b> {{ object.fecha }} </li>
                 <li class="list-group-item m-2"><b>Rondas:</b> {{ object.round_max }} </li>
                 <li class="list-group-item m-2"><b>Ganador:</b> {{ object.resultado }}</li>

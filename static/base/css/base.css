@@ -143,6 +143,15 @@ body::selection {
     background-color: black;
 }
 
+.link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.739);
+}
+
+.link:hover{
+    color: red;
+}
+
 .linkFooter {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.739);

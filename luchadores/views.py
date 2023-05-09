@@ -32,7 +32,7 @@ class LuchadorCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
-        form.instance.pais = PAISES[form.instance.pais]
+        form.instance.nacionalidad = PAISES[form.instance.pais]
         return super().form_valid(form)
 
 
@@ -46,7 +46,7 @@ class LuchadorEditView(LoginRequiredMixin, generic.UpdateView):
     actualizar_registros()
     
     def form_valid(self, form):
-        form.instance.pais = PAISES[form.instance.pais]
+        form.instance.nacionalidad = PAISES[form.instance.pais]
         return super().form_valid(form)
         
     
@@ -70,7 +70,10 @@ class LuchadorDetailView(LoginRequiredMixin, generic.DetailView):
         context["balanceText"] = ['Victorias', 'Empates', 'Derrotas']
         context['balance'] = [self.get_object().victorias, self.get_object().empates, self.get_object().derrotas]
         
-        context["golpesText"] = ['Acertados', 'Evitados', 'Fallados', 'Recibidos']
+        context["golpesText"] = ['Acertados', 'Evitados', 'Fallados', 'Encajados']
         context['golpes'] = [self.get_object().golpes_acertados, self.get_object().golpes_evitados, self.get_object().golpes_fallados, self.get_object().golpes_encajados]
+        
+        context["tiposGolpesText"] = ['Directos', 'Crochets', 'Ganchos']
+        context['tiposGolpes'] = [self.get_object().directos, self.get_object().crochets, self.get_object().ganchos]
         return context
     

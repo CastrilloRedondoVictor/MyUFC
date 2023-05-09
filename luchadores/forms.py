@@ -6,7 +6,7 @@ DATE_INPUT_FORMATS = ["%d.%m.%Y"]
 
 class LuchadorForm(forms.ModelForm):
     nacimiento = forms.DateField(widget=forms.SelectDateWidget(
-        attrs={'class': 'form-control datepicker_input'}, years=[y for y in range(1950,2023)], ))
+        attrs={'class': 'form-control datepicker_input'}, years=[y for y in range(1950,2023)]))
     class Meta:
         model = Luchador
         fields = ['nombre', 'apellidos', 'peso', 'altura', 'pais', 'guardia', 'alcance', 'nacimiento']

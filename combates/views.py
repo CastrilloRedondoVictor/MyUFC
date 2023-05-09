@@ -37,10 +37,7 @@ class CombateCreateView(LoginRequiredMixin, generic.CreateView):
         golpes_rojo = form.instance.golpes_directos_rojo + form.instance.golpes_crochet_rojo + form.instance.golpes_gancho_rojo
         golpes_azul = form.instance.golpes_directos_azul + form.instance.golpes_crochet_azul + form.instance.golpes_gancho_azul
         form.instance.golpes_rojo = form.instance.golpes_directos_rojo + form.instance.golpes_crochet_rojo + form.instance.golpes_gancho_rojo
-        form.instance.golpes_azul = form.instance.golpes_directos_azul + form.instance.golpes_crochet_rojo + form.instance.golpes_gancho_azul
-        
-        print("AAAAAAA", golpes_azul)
-        print("EEEEEEEEEEEE", form.instance.golpes_acertados_azul)
+        form.instance.golpes_azul = form.instance.golpes_directos_azul + form.instance.golpes_crochet_azul + form.instance.golpes_gancho_azul
         
         form.instance.golpes_fallados_rojo = golpes_rojo - form.instance.golpes_acertados_rojo
         form.instance.golpes_fallados_azul = golpes_azul - form.instance.golpes_acertados_azul
@@ -62,6 +59,14 @@ class CombateEditView(LoginRequiredMixin, generic.UpdateView):
     actualizar_registros()
     
     def form_valid(self, form):
+        golpes_rojo = form.instance.golpes_directos_rojo + form.instance.golpes_crochet_rojo + form.instance.golpes_gancho_rojo
+        golpes_azul = form.instance.golpes_directos_azul + form.instance.golpes_crochet_azul + form.instance.golpes_gancho_azul
+        
+        form.instance.golpes_rojo = form.instance.golpes_directos_rojo + form.instance.golpes_crochet_rojo + form.instance.golpes_gancho_rojo
+        form.instance.golpes_azul = form.instance.golpes_directos_azul + form.instance.golpes_crochet_azul + form.instance.golpes_gancho_azul
+        
+        form.instance.golpes_fallados_rojo = golpes_rojo - form.instance.golpes_acertados_rojo
+        form.instance.golpes_fallados_azul = golpes_azul - form.instance.golpes_acertados_azul
         return super().form_valid(form)
         
     

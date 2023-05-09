@@ -37,8 +37,8 @@
         <th scope="col">Peso</th>
         <th scope="col">Altura</th>
         <th scope="col">Alcance</th>
-        <th scope="col">Empates</th>
         <th scope="col">Victorias</th>
+        <th scope="col">Empates</th>
         <th scope="col">Derrotas</th>
         <th scope="col">Acciones</th>
     </tr>
@@ -52,8 +52,8 @@
             <td>{{ luchador.peso }}</td>
             <td>{{ luchador.altura }}</td>
             <td>{{ luchador.alcance }}</td>
-            <td>{{ luchador.empates }}</td>
             <td>{{ luchador.victorias }}</td>
+            <td>{{ luchador.empates }}</td>
             <td>{{ luchador.derrotas }}</td>
             <td>
             <a href="{% url 'luchadores:luchadores_detail' luchador.id %}" class="text-dark m-1"><ion-icon class="icono" name="information-outline"></ion-icon></a>
@@ -63,7 +63,7 @@
     </tr>
     {% empty %}
         <tr>
-            <td colspan="10">No hay luchadores registrados.</td>
+            <td colspan="9">No hay luchadores registrados.</td>
         </tr>
         {% endfor %}
     </tbody>

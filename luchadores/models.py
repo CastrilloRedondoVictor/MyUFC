@@ -3,8 +3,8 @@ from bases.models import BaseModel
 
 
 GUARDIA_CHOICES = [
-        ('diestra', 'Diestra'),
-        ('zurda', 'Zurda'),
+        ('Diestra', 'Diestra'),
+        ('Zurda', 'Zurda'),
 ]
 
 PAISES_CHOICES = [
@@ -470,6 +470,7 @@ class Luchador(BaseModel):
     apellidos = models.CharField(max_length=100)
     peso = models.DecimalField(max_digits=5, decimal_places=2)
     altura = models.DecimalField(max_digits=4, decimal_places=2)
+    nacionalidad = models.CharField(null=True, blank=True, default='España')
     pais = models.CharField(choices=PAISES_CHOICES, default='spain')
     guardia = models.CharField(choices=GUARDIA_CHOICES)
     alcance = models.DecimalField(max_digits=4, decimal_places=2)
@@ -477,13 +478,16 @@ class Luchador(BaseModel):
     victorias = models.PositiveIntegerField(null=True, blank=True, default=0)
     derrotas = models.PositiveIntegerField(null=True, blank=True, default=0)
     nacimiento = models.DateField()
-    edad = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_totales = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_acertados = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_fallados = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_recibidos = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_encajados = models.PositiveIntegerField(null=True, blank=True, default=0)
     golpes_evitados = models.PositiveIntegerField(null=True, blank=True, default=0)
+    directos = models.PositiveIntegerField(null=True, blank=True, default=0)
+    crochets = models.PositiveIntegerField(null=True, blank=True, default=0)
+    ganchos = models.PositiveIntegerField(null=True, blank=True, default=0)
+    combates = models.PositiveIntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
         return self.nombre + ' ' + self.apellidos

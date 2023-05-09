@@ -9,13 +9,15 @@
 
 <div class= "row bgt">
     <div class= "col-lg-8 col-md-12 col-sm-12 offset-lg-2 offset-md-0 offset-sm-0 card o-hidden border-0 shadow-lg p-5 my-5">
-        <h1 class = "mma mb-5">{{ object.nombre|lower }} {{ object.apellidos|lower }}</h1>
+        <h1 class = "mma mb-5">{{ object|lower }}</h1>
         <div class="col-10 m-auto">
             <ul class="list-group list-group-flush">
+                <li class="list-group-item m-2"><b>Nacionalidad:</b> {{ object.nacionalidad }}</li>
                 <li class="list-group-item m-2"><b>Fecha de nacimiento:</b> {{ object.nacimiento }}</li>
-                <li class="list-group-item m-2"><b>Peso:</b> {{ object.peso }}</li>
+                <li class="list-group-item m-2"><b>Peso:</b> {{ object.peso }} kg</li>
                 <li class="list-group-item m-2"><b>Altura:</b> {{ object.altura }} m</li>
                 <li class="list-group-item m-2"><b>Alcance:</b> {{ object.alcance }} m</li>
+                <li class="list-group-item m-2"><b>Guardia:</b> {{ object.guardia }}</li>
             </ul>
         </div>
         {% comment %} <p>Fecha de nacimiento: {{ object.nacimiento }}</p>
@@ -28,8 +30,9 @@
   <!-- agregar más información del luchador aquí -->
 
   <div class="row">
-    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Balance de victorias</h3><canvas id="balanceVictorias" ></canvas></div>
-    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Golpes</h3><canvas id="golpesTotales" ></canvas></div>
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Balance de victorias</h3><h6 class="m-2 text-dark">Combates totales: {{object.combates}}<h6><canvas id="balanceVictorias" ></canvas></div>
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Golpes</h3><h6 class="m-2 text-dark">Golpes totales: {{object.golpes_totales}} // Golpes recibidos: {{object.golpes_recibidos}}<h6><canvas id="golpesTotales" ></canvas></div>
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Tipos de golpes</h3><canvas id="facturasPorTipo"></canvas></div>
 </div>
 
 
@@ -125,8 +128,11 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    },
+                    gridLines: {
+                        display: false
                     }
-                }]
+                }],
             },
             
         }
@@ -143,6 +149,7 @@
                 data: {{ golpes|safe }},
                 borderColor: 'grey',
                 borderWidth: 1,
+                pointRadius: 10,
                 backgroundColor: getColores3(),
             }]
         },
@@ -157,43 +164,39 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    },
+                    gridLines: {
+                        display: false
                     }
-                }]
+                }],
             },
             
         }
     });
 
 
-    {% comment %} var ctx3 = document.getElementById('facturasPorTipo').getContext('2d');
+    var ctx3 = document.getElementById('facturasPorTipo').getContext('2d');
     var pagosPorComunidad = new Chart(ctx3, {
         type: 'doughnut',
         data: {
-            labels: {{ tiposFac|safe }},
+            labels: {{ tiposGolpesText|safe }},
             datasets: [{
                 label: 'Dinero total',
-                data: {{ numFac|safe }},
+                data: {{ tiposGolpes|safe }},
                 borderColor: 'grey',
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor: getColores2(),
             }]
         },
         options: {
             animation: {
                 duration: 3000
             },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            backgroundColor: getColores(),
         }
     });
 
 
-    var ctx4 = document.getElementById('ventasPorEvento').getContext('2d');
+    {% comment %} var ctx4 = document.getElementById('ventasPorEvento').getContext('2d');
     var ventasPorEvento = new Chart(ctx4, {
         type: 'line',
         data: {

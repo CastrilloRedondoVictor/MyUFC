@@ -19,13 +19,18 @@ def actualizar_registros():
         luchador.golpes_recibidos = 0
         luchador.golpes_encajados = 0
         luchador.golpes_evitados = 0
+        luchador.directos = 0
+        luchador.crochets = 0
+        luchador.ganchos = 0
+        luchador.combates = 0
         luchador.save()
         
         for combate in Combate.objects.all():
             
             resultado = combate.resultado
             
-            if luchador == combate.luchador_rojo:
+            if luchador == combate.luchador_rojo: 
+                luchador.combates = luchador.combates + 1
                 if resultado == 'rojo':
                     luchador.victorias = luchador.victorias + 1
                 if resultado == 'azul':
@@ -36,11 +41,15 @@ def actualizar_registros():
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_rojo
                 luchador.golpes_totales = luchador.golpes_totales + combate.golpes_rojo
                 luchador.golpes_fallados = luchador.golpes_fallados + combate.golpes_fallados_rojo
+                luchador.directos = luchador.directos + combate.golpes_directos_rojo
+                luchador.crochets = luchador.crochets + combate.golpes_crochet_rojo
+                luchador.ganchos = luchador.ganchos + combate.golpes_gancho_rojo
                 luchador.golpes_recibidos = luchador.golpes_recibidos + combate.golpes_azul
                 luchador.golpes_encajados = luchador.golpes_encajados + combate.golpes_acertados_azul
                 luchador.golpes_evitados = luchador.golpes_evitados + combate.golpes_fallados_azul
                     
             if luchador == combate.luchador_azul:
+                luchador.combates = luchador.combates + 1
                 if resultado == 'rojo':
                     luchador.derrotas = luchador.victorias + 1
                 if resultado == 'azul':
@@ -51,10 +60,12 @@ def actualizar_registros():
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_azul
                 luchador.golpes_totales = luchador.golpes_totales + combate.golpes_azul
                 luchador.golpes_fallados = luchador.golpes_fallados + combate.golpes_fallados_azul
+                luchador.directos = luchador.directos + combate.golpes_directos_azul
+                luchador.crochets = luchador.crochets + combate.golpes_crochet_azul
+                luchador.ganchos = luchador.ganchos + combate.golpes_gancho_azul
                 luchador.golpes_recibidos = luchador.golpes_recibidos + combate.golpes_rojo
                 luchador.golpes_encajados = luchador.golpes_encajados + combate.golpes_acertados_rojo
                 luchador.golpes_evitados = luchador.golpes_evitados + combate.golpes_fallados_rojo
-                
             luchador.save()
 
 class Home(LoginRequiredMixin, generic.TemplateView):
