@@ -31,11 +31,11 @@ def actualizar_registros():
             
             if luchador == combate.luchador_rojo: 
                 luchador.combates = luchador.combates + 1
-                if resultado == 'rojo':
+                if resultado == 'Rojo':
                     luchador.victorias = luchador.victorias + 1
-                if resultado == 'azul':
+                if resultado == 'Azul':
                     luchador.derrotas = luchador.derrotas + 1
-                if resultado == 'empate':
+                if resultado == 'Empate':
                     luchador.empates = luchador.empates + 1
                     
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_rojo
@@ -50,11 +50,11 @@ def actualizar_registros():
                     
             if luchador == combate.luchador_azul:
                 luchador.combates = luchador.combates + 1
-                if resultado == 'rojo':
+                if resultado == 'Rojo':
                     luchador.derrotas = luchador.victorias + 1
-                if resultado == 'azul':
+                if resultado == 'Azul':
                     luchador.victorias = luchador.derrotas + 1
-                if resultado == 'empate':
+                if resultado == 'Empate':
                     luchador.empates = luchador.empates + 1
                     
                 luchador.golpes_acertados = luchador.golpes_acertados + combate.golpes_acertados_azul
