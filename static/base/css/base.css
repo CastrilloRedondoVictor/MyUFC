@@ -116,14 +116,20 @@ body::selection {
     background-attachment: fixed;
     height: 500px;
 }
-.background1{
+.background5{
     background-image: url('https://www.telemundodeportes.com/sites/default/files/2016/03/06/gettyimages-513970774.jpg');
 }
 .background2{
-    background-image: url('https://c4.wallpaperflare.com/wallpaper/26/170/388/mma-ufc-khabib-nurmagomedov-wallpaper-preview.jpg');
+    background-image: url('https://th.bing.com/th/id/R.02f47c2663d996a1ac704c4b2df7647a?rik=nXu0FAtdAXFvXw&pid=ImgRaw&r=0');
 }
 .background3{
-    background-image: url('https://c4.wallpaperflare.com/wallpaper/265/497/125/arts-battle-martial-mma-wallpaper-preview.jpg');
+    background-image: url('https://th.bing.com/th/id/R.309611f7d8741f2b6d183d33ca88d33d?rik=WT86uPQkPCghAQ&pid=ImgRaw&r=0');
+}
+.background4{
+    background-image: url('https://images3.alphacoders.com/702/702114.jpg');
+}
+.background1{
+    background-image: url('https://i.eurosport.com/2019/03/26/2551921-52937137-1600-900.jpg');
 }
 
 .contenido{
@@ -339,6 +345,18 @@ body::selection {
 
 .cover.item-c {
     background-image: url('https://wallpapercrafter.com/sizes/2560x1440/94221-conor-mcgregor-sports-male-celebrities-ufc-hd-4k-5k-boys.jpg');
+}
+
+.cover.item-d{
+    background-image: url('https://i2.wp.com/cagefights.s3.us-west-2.amazonaws.com/2019/12/1136954724.jpg.0.jpg?fit=1310%2C873&ssl=1');
+}
+
+.cover.item-e{
+    background-image: url('https://th.bing.com/th/id/R.5d739b99d96a64c7099a1cd082f053b5?rik=IzlCj6ZKt0gVeA&riu=http%3a%2f%2fmovietvtechgeeks.com%2fwp-content%2fuploads%2f2014%2f09%2fhenderson-versus-rua-II-best-ufc-fights-ever-2014-images.jpg&ehk=8tcch6nivLMaqPn4sBrBiHkrzxGE%2bMy1vMxXFNAdUVw%3d&risl=&pid=ImgRaw&r=0');
+}
+
+.cover.item-f{
+    background-image: url('https://i.pinimg.com/originals/f7/94/c4/f794c4ea745b8db1711400f640bb349a.jpg');
 }
 
 .cover h1 {

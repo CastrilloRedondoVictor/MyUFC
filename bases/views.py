@@ -75,14 +75,24 @@ class Home(LoginRequiredMixin, generic.TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        luchadores = Luchador.objects.filter(creator = self.request.user).order_by("-victorias")
-        numLuchadores = luchadores.count()
         context['user'] = self.request.user.username
+        
+        luchadores = Luchador.objects.filter(creator = self.request.user).order_by("-victorias", "derrotas")
+        numLuchadores = luchadores.count()
         if numLuchadores > 0:
             context["primero"] = luchadores[0]
             if numLuchadores > 1:
                 context["segundo"] = luchadores[1]
             if numLuchadores > 2:
                 context["tercero"] = luchadores[2]
+                
+        combates = Combate.objects.filter(creator = self.request.user).order_by("-fecha")
+        numCombates = combates.count()
+        if numCombates > 0:
+            context["primeroC"] = combates[0]
+            if numCombates > 1:
+                context["segundoC"] = combates[1]
+            if numCombates > 2:
+                context["terceroC"] = combates[2]
+                
         return context
-    

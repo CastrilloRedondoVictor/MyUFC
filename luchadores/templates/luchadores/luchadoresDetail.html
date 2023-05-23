@@ -29,11 +29,17 @@
   <p>Derrotas: {{ object.derrotas }}</p> {% endcomment %}
   <!-- agregar más información del luchador aquí -->
 
+  {% if combates %}
   <div class="row">
     <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Balance de victorias</h3><h6 class="m-2 text-dark">Combates totales: {{object.combates}}<h6><canvas id="balanceVictorias" ></canvas></div>
     <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Golpes</h3><h6 class="m-2 text-dark">Golpes totales: {{object.golpes_totales}} // Golpes recibidos: {{object.golpes_recibidos}}<h6><canvas id="golpesTotales" ></canvas></div>
     <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3>Tipos de golpes</h3><canvas id="facturasPorTipo"></canvas></div>
 </div>
+{% else %}
+<div class="row">
+    <div class="col-lg-10 col-md-12 col-sm-12 card m-auto mt-5 p-3 shadow"><h3 class = "text-center">Aún no hay combates de este luchador.</h3></div>
+</div>
+  {% endif %}
 
 
   <div class="mt-5 col-12 text-center">

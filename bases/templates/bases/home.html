@@ -73,10 +73,75 @@
             </div>
         </div>
 <div class="background background2 row"></div>
-<div class="contenido">
-</div>
+<div class="contenido p-5">
+    <h1 class="mma">last 3</h1>
+        <div class="row top3">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-d">
+                        {% if primeroC %}
+                        <h1>{{primeroC.luchador_rojo}}<br>{{primeroC.luchador_azul}}</h1>
+                        <span class="price">{{primeroC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a href="{% url 'combates:combates_detail' primeroC.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">{{primeroC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-e">
+                        {% if segundoC %}
+                        <h1>{{segundoC.luchador_rojo}}<br>{{segundoC.luchador_azul}}</h1>
+                        <span class="price">{{segundoC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a href="{% url 'combates:combates_detail' segundoC.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">{{segundoC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="cover item-f">
+                        {% if terceroC %}
+                        <h1>{{terceroC.luchador_rojo}}<br>{{terceroC.luchador_azul}}</h1>
+                        <span class="price">{{terceroC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a href="{% url 'combates:combates_detail' terceroC.id %}">Más información</a>
+                        </div>
+                        {% else %}
+                        <h1>-----</h1>
+                        <span class="price">{{terceroC.fecha|date:"m/d/y"}}</span>
+                        <div class="card-back">
+                            <a>No hay información</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="co-lg-6 col-md-8 col-sm-10 m-auto text-center mt-5">
+                <p>Estos son los últimos 3 combates que se han celebrado. Cada vez que haya un nuevo combate, esta información se actualizará.</p>
+    </div>
+            </div>
+        </div>
 <div class="background background3 row"></div>
-<div class="contenido">a</div>
 {% endblock content %}
 
 {% block javascript %}

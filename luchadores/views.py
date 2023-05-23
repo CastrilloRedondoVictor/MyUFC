@@ -2,11 +2,13 @@ from pyexpat.errors import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from luchadores.forms import LuchadorForm
 
 from .models import Luchador, PAISES
+from combates.models import Combate
 from bases.views import actualizar_registros
 
 # Create your views here.
@@ -67,6 +69,10 @@ class LuchadorDetailView(LoginRequiredMixin, generic.DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        combates = Combate.objects.filter(Q(luchador_azul__id=self.get_object().id) | Q(luchador_rojo__id=self.get_object().id))
+        context['combates'] =combates
+        
         context["balanceText"] = ['Victorias', 'Empates', 'Derrotas']
         context['balance'] = [self.get_object().victorias, self.get_object().empates, self.get_object().derrotas]
         
